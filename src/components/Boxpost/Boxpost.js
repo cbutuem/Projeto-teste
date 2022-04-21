@@ -1,11 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from "axios";
 //import { Botao } from '../Botao/Botao';
 
 export function Boxpost(props) {
-    const navigate = useNavigate();
-
     const [form, setForm] = useState({
         instituicao: "",
         descricao: "",
@@ -22,7 +19,11 @@ export function Boxpost(props) {
 
     await axios.post("https://ironrest.herokuapp.com/camila-dante", form);
 
-    navigate("/");
+    setForm({
+        instituicao: "",
+        descricao: "",
+        categoria: "",
+    });
   }
   
   return (

@@ -33,12 +33,13 @@ export function ReadDetails(props){
         <h1>{user.instituicao}</h1>
         <p>{user.descricao}</p>
         <p>{user.categoria}</p>
-        <p>{user.comentarios}</p>
-        <Comentario/>
+    
         <Link to={`/senha/${params.userId}`}>
           <button>Editar</button>
         </Link>
         <button onClick={handleDelete}>Deletar</button>
+        <Comentario/>
+        
       </>
     );
 }

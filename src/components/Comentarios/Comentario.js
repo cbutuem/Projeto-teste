@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export function Comentario() {
-  const { topicId } = useParams();
+  const params = useParams();
   const [topic, setTopic] = useState({comentarios: [] });
   const [form, setForm] = useState({
     nome: "",
@@ -15,14 +15,15 @@ export function Comentario() {
   useEffect(() => {
     async function fetchTopic() {
       const response = await axios.get(
-        `https://ironrest.herokuapp.com/camila-dante/${topicId}`
+        `https://ironrest.herokuapp.com/camila-dante/${params.userId}`
       );
       setTopic(response.data);
+      console.log("oii",response.data);
       setSubmitStatus(false);
     }
 
     fetchTopic();
-  }, [topicId, submitStatus]);
+  }, [params.userId, submitStatus]);
 
   function handleChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -37,18 +38,19 @@ export function Comentario() {
     delete attTopic._id;
 
     await axios.put(
-      `https://ironrest.herokuapp.com/camila-dante/${topicId}`,
+      `https://ironrest.herokuapp.com/camila-dante/${params.userId}`,
       attTopic
     );
+    setForm({
+      nome: "",
+      comentario: "",
+  });
 
     setSubmitStatus(true);
   }
 
   return (
     <>
-      <h1>{topic.insttuicao}</h1>
-      <p>{topic.descricao}</p>
-
       <h2>Respostas</h2>
       {topic.comentarios.map((currentComentarios) => {
         return (

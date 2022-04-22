@@ -8,8 +8,22 @@ export function Navbar(){
                 Mural Solidario{" "}
               </Link>
             </h1>
-            <ul>
-                <li></li>
+            <ul class='botoes'>
+                <li>
+                <Link to= '/'>
+                <button>Mural</button>
+                </Link>
+                </li>
+                <li>
+                <Link to= '/'>
+                <button>Carências</button>
+                </Link>
+                </li>
+                <li>
+                <Link to= '/'>
+                <button>Doações</button>
+                </Link>
+                </li>
             </ul>
         </nav>
     );

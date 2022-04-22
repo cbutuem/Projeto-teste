@@ -18,21 +18,23 @@ export function Boxpost(props) {
     console.log(form);
   } 
   async function handleSubmit(event) {
-    event.preventDefault();
+      if (form.instituicao !== "" && form.descricao !== "" && form.categoria !== "" && form.senha !== ""){
+        event.preventDefault();
 
-    await axios.post("https://ironrest.herokuapp.com/camila-dante", form);
+        await axios.post("https://ironrest.herokuapp.com/camila-dante", form);
 
-    setForm({
-        instituicao: "",
-        descricao: "",
-        categoria: "",
-    });
-    navigate("/");
+        setForm({
+            instituicao: "",
+            descricao: "",
+            categoria: "",
+        });
+        navigate("/");
+    }
   }
   return (
     <div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} class= "form">
             <label>Instituição:</label>
             <input onChange={handleChange} value={form.instituicao}  name= "instituicao" placeholder="Instituição"/>
             <input onChange={handleChange} value={form.descricao}  name= "descricao" placeholder="Descrição"/>
@@ -40,10 +42,10 @@ export function Boxpost(props) {
             <input onChange={handleChange} value={cat}  name= "categoria" placeholder="Categoria"/>
             <h3>{cat}</h3>
             <button type= "button" onClick={() => setCat("doacao")} value={form.categoria = cat} name= "categoria"> Doacao</button>
-            <button type= "button" onClick={() => setCat("carencia")} value={form.categoria = cat} name= "categoria"> Carencia</button> 
+            <button type= "button" onClick={() => setCat("carencia")} value={form.categoria = cat} name= "categoria"> Carencia</button>
             <button type="submit"> set!</button>
+            
       </form>
-      
     </div>
   );
 }
